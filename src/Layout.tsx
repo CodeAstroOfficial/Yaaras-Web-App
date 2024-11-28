@@ -17,7 +17,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 interface LayoutProps {
 
@@ -102,10 +102,10 @@ const Layout: React.FC<LayoutProps> = () => {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <Link
+                                <NavLink
                                   to={item.href}
-                                  className={classNames(
-                                    item.current
+                                  className={({ isActive }) => classNames(
+                                    isActive
                                       ? "bg-gray-800 text-white"
                                       : "text-gray-400 hover:text-white hover:bg-gray-800",
                                     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -116,7 +116,7 @@ const Layout: React.FC<LayoutProps> = () => {
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </Link>
+                                </NavLink>
                               </li>
                             ))}
                           </ul>
@@ -226,10 +226,10 @@ const Layout: React.FC<LayoutProps> = () => {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            item.current
+                        <NavLink
+                          to={item.href}
+                          className={({ isActive }) => classNames(
+                            isActive
                               ? "bg-gray-800 text-white"
                               : "text-gray-400 hover:text-white hover:bg-gray-800",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -240,7 +240,7 @@ const Layout: React.FC<LayoutProps> = () => {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
