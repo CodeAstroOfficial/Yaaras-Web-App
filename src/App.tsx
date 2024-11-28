@@ -1,11 +1,13 @@
 
-import { useEffect, useState } from "react";
 import Layout from "./Layout";
+import Clients from "./pages/Clients";
 
 function App() {
   return (
     <main>
-      <Layout />
+      <Layout >
+        <Clients />
+      </Layout>
     </main>
   );
 }
