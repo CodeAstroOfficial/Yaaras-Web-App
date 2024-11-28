@@ -1,39 +1,11 @@
 
-import { generateClient } from "aws-amplify/data";
 import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-
-const client = generateClient<Schema>();
+import Layout from "./Layout";
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
-  function deleteTodo(id: string) {
-    client.models.Todo.delete({ id })
-  }
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li
-            onClick={() => deleteTodo(todo.id)}
-            key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
+      <Layout />
     </main>
   );
 }
