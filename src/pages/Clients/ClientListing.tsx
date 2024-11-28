@@ -6,7 +6,6 @@ import { clientDirectory } from "../../data/client";
 
 const ClientListing = () => {
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <div className="p-2 bg-gray-200">
@@ -35,9 +34,8 @@ const ClientListing = () => {
             />
           </div>
         </div>
-
       </div>
-      <nav className="relative h-full overflow-y-auto border-r" aria-label="Directory">
+      <nav className="relative h-[calc(100vh-6rem)] overflow-y-auto border-r" aria-label="Directory">
         {Object.keys(clientDirectory).map((letter) => (
           <div key={letter} className="relative">
             <div className="sticky top-0 z-10 border-y border-b-gray-200 border-t-gray-100 bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900">

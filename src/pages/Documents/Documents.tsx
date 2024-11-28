@@ -1,17 +1,17 @@
-import ClientDetails from "./ClientDetails";
-import ClientListing from "./ClientListing";
+import DocumentDetails from "./DocumentDetails";
+import DocumentListing from "./DocumentListing";
 
-const Clients = () => {
+const Documents = () => {
   return (
     <div className="h-[calc(100vh-4rem)]  lg:h-screen  flex overflow-y-hidden">
       <div className="w-64 h-full ">
-        <ClientListing />
+        <DocumentListing />
       </div>
       <div className="flex flex-col flex-1 flex-shrink min-w-0 overflow-y-scroll">
-        <ClientDetails />
+        <DocumentDetails />
       </div>
     </div>
   );
 };
 
-export default Clients;
+export default Documents;
