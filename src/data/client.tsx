@@ -1,4 +1,14 @@
-export const clientDirectory = {
+type ClientDirectory = {
+    [key: string]: {
+        id: number;
+        name: string;
+        email: string;
+        imageUrl: string;
+    }[];
+};
+
+
+export const clientDirectory: ClientDirectory = {
     A: [
         {
             id: 1,

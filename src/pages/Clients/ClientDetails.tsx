@@ -6,102 +6,11 @@ import {
   Transition,
 } from "@headlessui/react";
 import {
-  DocumentCheckIcon,
   EllipsisVerticalIcon,
-  DocumentIcon,
   UserIcon,
 } from "@heroicons/react/20/solid";
 import { ArchiveBoxXMarkIcon } from "@heroicons/react/24/outline";
-import React from "react";
-
-const statuses = {
-  Complete: "text-green-700 bg-green-50 ring-green-600/20",
-  "In progress": "text-gray-600 bg-gray-50 ring-gray-500/10",
-  Archived: "text-yellow-800 bg-yellow-50 ring-yellow-600/20",
-};
-
-const documents = [
-  {
-    id: 1,
-    name: "Document 1",
-    href: "#",
-    status: "Complete",
-    icon: DocumentCheckIcon,
-    createdBy: "Leslie Alexander",
-    dueDate: "March 17, 2023",
-    dueDateTime: "2023-03-17T00:00Z",
-  },
-  {
-    id: 2,
-    name: "Document 2",
-    href: "#",
-    status: "In progress",
-    createdBy: "Leslie Alexander",
-    dueDate: "May 5, 2023",
-    icon: DocumentIcon,
-    dueDateTime: "2023-05-05T00:00Z",
-  },
-  {
-    id: 3,
-    name: "Document 3",
-    href: "#",
-    status: "In progress",
-    createdBy: "Courtney Henry",
-    icon: DocumentIcon,
-    dueDate: "May 25, 2023",
-    dueDateTime: "2023-05-25T00:00Z",
-  },
-  {
-    id: 4,
-    name: "Document 3",
-    href: "#",
-    status: "In progress",
-    createdBy: "Courtney Henry",
-    icon: DocumentIcon,
-    dueDate: "May 25, 2023",
-    dueDateTime: "2023-05-25T00:00Z",
-  },
-  {
-    id: 5,
-    name: "Document 3",
-    href: "#",
-    status: "In progress",
-    createdBy: "Courtney Henry",
-    icon: DocumentIcon,
-    dueDate: "May 25, 2023",
-    dueDateTime: "2023-05-25T00:00Z",
-  },
-  {
-    id: 6,
-    name: "Document 1",
-    href: "#",
-    status: "Complete",
-    icon: DocumentCheckIcon,
-    createdBy: "Leslie Alexander",
-    dueDate: "March 17, 2023",
-    dueDateTime: "2023-03-17T00:00Z",
-  },
-  {
-    id: 7,
-    name: "Document 1",
-    href: "#",
-    status: "Complete",
-    icon: DocumentCheckIcon,
-    createdBy: "Leslie Alexander",
-    dueDate: "March 17, 2023",
-    dueDateTime: "2023-03-17T00:00Z",
-  },
-  {
-    id: 8,
-    name: "Document 1",
-    href: "#",
-    status: "Complete",
-    icon: DocumentCheckIcon,
-    createdBy: "Leslie Alexander",
-    dueDate: "March 17, 2023",
-    dueDateTime: "2023-03-17T00:00Z",
-  },
-];
+import { documents, statuses } from "../../data/document";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -110,12 +19,12 @@ function classNames(...classes: string[]) {
 const ClientDetails = () => {
   return (
     <div className="">
-      <div className="z-10 sticky top-0 border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-        <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
-          <div className="ml-4 mt-4">
+      <div className="sticky top-0 z-10 px-4 py-5 bg-white border-b border-gray-200 sm:px-6">
+        <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
+          <div className="mt-4 ml-4">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <UserIcon className="h-12 w-12 rounded-full text-gray-300" />
+                <UserIcon className="w-12 h-12 text-gray-300 rounded-full" />
               </div>
               <div className="ml-4">
                 <h3 className="text-base font-semibold leading-6 text-gray-900">
@@ -127,10 +36,10 @@ const ClientDetails = () => {
               </div>
             </div>
           </div>
-          <div className="ml-4 mt-4 flex flex-shrink-0">
+          <div className="flex flex-shrink-0 mt-4 ml-4">
             <button
               type="button"
-              className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="relative inline-flex items-center px-3 py-2 ml-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
               <ArchiveBoxXMarkIcon
                 className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
@@ -141,16 +50,16 @@ const ClientDetails = () => {
           </div>
         </div>
       </div>
-      <ul role="list" className="divide-y divide-gray-100 px-4">
+      <ul role="list" className="px-4 divide-y divide-gray-100">
         {documents.map((project) => (
           <li
             key={project.id}
-            className="flex items-center justify-between gap-x-6 py-5"
+            className="flex items-center justify-between py-5 gap-x-6"
           >
             <div className="min-w-0">
-              <div className="flex items-center  gap-x-2">
+              <div className="flex items-center gap-x-2">
                 <project.icon
-                  className="h-4 w-4 text-gray-400 shrink-0"
+                  className="w-4 h-4 text-gray-400 shrink-0"
                   aria-hidden="true"
                 />
                 <p className="text-sm font-semibold leading-6 text-gray-900">
@@ -165,7 +74,7 @@ const ClientDetails = () => {
                   {project.status}
                 </p>
               </div>
-              <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+              <div className="flex items-center mt-1 text-xs leading-5 text-gray-500 gap-x-2">
                 <p className="whitespace-nowrap">
                   Due on{" "}
                   <time dateTime={project.dueDateTime}>{project.dueDate}</time>
@@ -176,12 +85,12 @@ const ClientDetails = () => {
                 <p className="truncate">Created by {project.createdBy}</p>
               </div>
             </div>
-            <div className="flex flex-none items-center gap-x-4">
+            <div className="flex items-center flex-none gap-x-4">
               <Menu as="div" className="relative flex-none">
                 <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
                   <span className="sr-only">Open options</span>
                   <EllipsisVerticalIcon
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                     aria-hidden="true"
                   />
                 </MenuButton>
@@ -193,7 +102,7 @@ const ClientDetails = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <MenuItems className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                  <MenuItems className="absolute right-0 z-10 w-32 py-2 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <MenuItem>
                       {({ focus }) => (
                         <a

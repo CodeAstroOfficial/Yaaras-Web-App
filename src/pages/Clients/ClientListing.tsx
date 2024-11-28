@@ -1,21 +1,8 @@
-import { MagnifyingGlassIcon, UserIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import { MagnifyingGlassIcon, UserIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-
-import { clientDirectory as _clientDirectory } from "../../data/client";
-interface Client {
-  id: number;
-  name: string;
-  email: string;
-  imageUrl: string;
-}
-
-interface ClientDirectory {
-  A: Client[];
-}
-
-const clientDirectory: ClientDirectory = _clientDirectory;
+import { useState } from "react";
+import { clientDirectory } from "../../data/client";
 
 const ClientListing = () => {
   const [open, setOpen] = useState(false);
@@ -33,10 +20,10 @@ const ClientListing = () => {
         </button>
         <div>
           <div className="relative mt-2 rounded-md shadow-sm">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <MagnifyingGlassIcon
                 aria-hidden="true"
-                className="h-5 w-5 text-gray-400"
+                className="w-5 h-5 text-gray-400"
               />
             </div>
             <input
@@ -48,46 +35,31 @@ const ClientListing = () => {
             />
           </div>
         </div>
-        {/* <form className="relative mt-4 flex flex-1" action="#" method="GET">
-          <label htmlFor="search-field" className="sr-only">
-            Search Clients
-          </label>
-          <MagnifyingGlassIcon
-            className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-            aria-hidden="true"
-          />
-          <input
-            id="search-field"
-            className="block h-full w-full border border-gray-200 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-            placeholder="Search Clients..."
-            type="search"
-            name="search"
-          />
-        </form> */}
+
       </div>
-      <nav className="relative h-full overflow-y-auto" aria-label="Directory">
+      <nav className="relative h-full overflow-y-auto border-r" aria-label="Directory">
         {Object.keys(clientDirectory).map((letter) => (
           <div key={letter} className="relative">
-            <div className="sticky top-0 z-10 border-y border-b-gray-200 border-t-gray-100 bg-gray-50 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900">
+            <div className="sticky top-0 z-10 border-y border-b-gray-200 border-t-gray-100 bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900">
               <h3>{letter}</h3>
             </div>
             <ul role="list" className="divide-y divide-gray-100">
               {clientDirectory[letter].map((person) => (
                 <li
                   key={person.email}
-                  className="flex gap-x-4 px-3 py-5 cursor-pointer"
+                  className="flex px-3 py-5 cursor-pointer gap-x-4"
                 >
                   {/* <img
-                    className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                    className="flex-none w-12 h-12 rounded-full bg-gray-50"
                     src={person.imageUrl}
                     alt=""
                   /> */}
-                  <UserIcon className="h-12 w-12 rounded-full text-gray-300" />
+                  <UserIcon className="w-12 h-12 text-gray-300 rounded-full" />
                   <div className="min-w-0">
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                       {person.name}
                     </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                    <p className="mt-1 text-xs leading-5 text-gray-500 truncate">
                       {person.email}
                     </p>
                   </div>
@@ -104,19 +76,19 @@ const ClientListing = () => {
         />
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
             <DialogPanel
               transition
               className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 w-50 sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
             >
-              <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+              <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">Close</span>
-                  <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                  <XMarkIcon aria-hidden="true" className="w-6 h-6" />
                 </button>
               </div>
               <form>
@@ -126,7 +98,7 @@ const ClientListing = () => {
                       Client's Information
                     </h2>
 
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                       <div className="sm:col-span-3">
                         <label
                           htmlFor="first-name"
@@ -200,7 +172,7 @@ const ClientListing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="flex items-center justify-end mt-6 gap-x-6">
                   <button
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900"
@@ -210,7 +182,7 @@ const ClientListing = () => {
                   </button>
                   <button
                     type="button"
-                    className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                    className="px-3 py-2 text-sm font-semibold text-white bg-gray-600 rounded-md shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                     onClick={() => setOpen(false)}
                   >
                     Send Invite
